@@ -10,6 +10,7 @@ export class SpotifyService {
 
   urlBusqueda: string = 'https://api.spotify.com/v1/search';
   urlArtista: string = 'https://api.spotify.com/v1/artists';
+  token: string = 'BQA5paxK8x6jfAsfGEZm4YvCAEBcrK6T5ot7BzxC0B5pwmM0_GshMnx8y3IB0ns9p77wGepnpL9gAVJki_WJdQ';
 
   constructor(private http: Http) { }
 
@@ -24,7 +25,7 @@ export class SpotifyService {
 
     let headers = new Headers();
 
-    headers.append('authorization', 'Bearer BQA5paxK8x6jfAsfGEZm4YvCAEBcrK6T5ot7BzxC0B5pwmM0_GshMnx8y3IB0ns9p77wGepnpL9gAVJki_WJdQ');
+    headers.append('authorization', 'Bearer ' + this.token);
 
     let query = `?q=${termino}&type=artist`
     let url = this.urlBusqueda + query;
@@ -48,7 +49,7 @@ export class SpotifyService {
 
     let headers = new Headers();
 
-    headers.append('authorization', 'Bearer BQA5paxK8x6jfAsfGEZm4YvCAEBcrK6T5ot7BzxC0B5pwmM0_GshMnx8y3IB0ns9p77wGepnpL9gAVJki_WJdQ');
+    headers.append('authorization', 'Bearer ' + this.token);
 
     let query = `/${id}`
     let url = this.urlArtista + query;
@@ -56,8 +57,25 @@ export class SpotifyService {
     return this.http.get(url, { headers })
       .map(res => {
         // console.log(res.json());
-        // this.artistas = res.json().artists.items;
         return res.json();
+      })
+
+  }
+
+
+  getTop(id: string) {
+
+    let headers = new Headers();
+
+    headers.append('authorization', 'Bearer ' + this.token);
+
+    let query = `/${id}/top-tracks?country=US`
+    let url = this.urlArtista + query;
+
+    return this.http.get(url, { headers })
+      .map(res => {
+        console.log(res.json().tracks);
+        return res.json().tracks;
       })
 
   }
