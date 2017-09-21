@@ -10,7 +10,6 @@ export class DomSeguroPipe implements PipeTransform {
     constructor(private domSanitizer: DomSanitizer) { }
 
     transform(value: string, url: string): any {
-        debugger;
 
         return this.domSanitizer.bypassSecurityTrustResourceUrl(url + value);
     }
