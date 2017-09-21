@@ -1,4 +1,4 @@
-<div *ngIf="artista" class="main-container animated fadeIn fast">
+<div *ngIf="artista" class="container main-container animated fadeIn fast">
   
 <div class="row">
 
@@ -53,10 +53,11 @@
                 <td [innerHtml]="pista.name"></td>
                 <td [innerHtml]="pista.popularity"></td>
                 <td>
-                  <audio controls>
+                  <!--<audio controls>
                     <source [src]="pista.preview_url">
                     Tu navegador es muy viejo
-                  </audio>
+                  </audio>-->
+                  <iframe [src]="pista.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
                 </td>
               </tr>
             </tbody>
