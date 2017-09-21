@@ -22,7 +22,7 @@ export class ArtistaComponent implements OnInit {
       .subscribe(id => {
         this._spotifyService.getArtista(id).subscribe(data => this.artista = data);
 
-        this._spotifyService.getTop(id).subscribe(data => this.artista = data);
+        this._spotifyService.getTop(id).subscribe(data => this.pistas = data);
       })
 
   }
